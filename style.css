@@ -30,18 +30,14 @@ body {
     z-index: 1;
 }
 
-.random-card {
+.card {
+    text-align: center;
     display: flex;
     height: 45vh;
+    width: 18rem;
     justify-content: center;
     align-items: center;
 }
-
-.card {
-    text-align: center;
-}
-
-
 
 p {
     text-align: center;
