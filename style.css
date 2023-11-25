@@ -8,7 +8,7 @@ body {
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
-}
+    }
 
 .navbar {
     position: fixed;
@@ -19,7 +19,8 @@ body {
 }
 
 .display {
-
+    display: flex;
+    flex-wrap: wrap; 
 }
 
 #footer {
@@ -32,11 +33,21 @@ body {
 
 .card {
     text-align: center;
-    display: flex;
     height: 45vh;
+    margin: 15px;
     width: 18rem;
     justify-content: center;
     align-items: center;
+    border-radius: 20 em 20 em 0 0;
+    box-shadow: 0 0 10px black;
+    border: 0;
+}
+.card img {
+    border-radius: 10 em 10 em 0 0;
+}
+.card .btn {
+    padding: .75em;
+    border-radius: 0;
 }
 
 p {

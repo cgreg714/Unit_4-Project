@@ -15,22 +15,22 @@ const cart = []; //empty array for cart
 
 //! Cards
 
-function displayItems(items) { //invoke function after the fetch results in the fakeStore
+function displayItems(items) { //array from newRes has been passed to items
   items.forEach(item => {
   
-    //* Create Elements
+//* Create Elements
 let card = document.createElement("div");
 let img = document.createElement("img");
 let body = document.createElement("div");
 let title = document.createElement("h5");
 let desc = document.createElement("p");
-//let btn = document.createElement("a");
+let btn = document.createElement("a");
 
 //* Set Attributes -- *building the single card div in our JS
 card.className = "card";
 card.style.width = "18rem";
 
-img.src = item.img;
+img.src = item.image;
 img.className = "card-img-top"
 img.alt = item.title;
 
@@ -41,28 +41,28 @@ title.textContent = item.title;
 
 desc.className = "card-text";
 desc.textContent = item.description;
-/*
+
 btn.className = "btn btn-primary";
 btn.textContent = "Add to Cart";
 btn.onclick = () => {
   cart.push(item);
   shoppingCart();
-  //anonymous function that generates new object holding keys of: id, title, cost, quantity
-  //each key is assigned the value of the current item, with quantity set to '1'
-  //invokes submitToCart function
-}*/
+  }
+//anonymous function that generates new object holding keys of: id, title, cost, quantity
+//each key is assigned the value of the current item, with quantity set to '1'
+//invokes submitToCart function
  
 //* Attach Elements -- build from inside out
 
 body.appendChild(title);
-//body.appendChild(btn);
 body.appendChild(desc);
+body.appendChild(btn);
 
 card.appendChild(img);
 card.appendChild(body);
 
-//item.appendChild(card);  //
-// ????
+display.appendChild(card);
+
 })}
 
 
@@ -70,30 +70,19 @@ card.appendChild(body);
 //declarative function add 'item' to 'cart' array
 ;
 
-  window.onload = function() {
-    fakeStore('');  //add &limit=(# of items) if you need to limit the number loaded.
-    };
   
+   
 
     //! Event Listeners
 const fakeStore = async (endpoint) => {
-  let res = await fetch(baseURL + endpoint)
-  let newRes = await res.json()
-  displayItems(newRes)
-  let item = newRes.item;
-  console.log(newRes[0])//displays values from first entry of array
-  
-  let obj = {
-    title: newRes.title,
-    price: newRes.price,
-    category: newRes.category,
-    desc: newRes.description,
-    img: newRes.image
-  };
+let res = await fetch(baseURL + endpoint)
+let newRes = await res.json()
+displayItems(newRes) //newRes is holding the array from the fetch
+}
 
-  console.log(obj)  // returns values as 'undefined' ????
-  //displayItems(obj);
- }
+window.addEventListener("load", (event) => {
+  event.preventDefault(displayItems);
+});
 
  electronics.addEventListener("click", e => {
   e.preventDefault();
