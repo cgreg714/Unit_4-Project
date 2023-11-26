@@ -12,12 +12,13 @@ const cart = []; //empty array for cart
  const menNavLink = document.querySelector('#mensClothing');
  const display = document.getElementById("display");
  const item = document.querySelector(".item");
+ 
 
 //! Cards
 
 function displayItems(items) { //array from newRes has been passed to items
   items.forEach(item => {
-  
+   
 //* Create Elements
 let card = document.createElement("div");
 let img = document.createElement("img");
@@ -48,10 +49,12 @@ btn.onclick = () => {
   cart.push(item);
   shoppingCart();
   }
+
+
 //anonymous function that generates new object holding keys of: id, title, cost, quantity
 //each key is assigned the value of the current item, with quantity set to '1'
 //invokes submitToCart function
- 
+
 //* Attach Elements -- build from inside out
 
 body.appendChild(title);
@@ -105,44 +108,3 @@ mensClothing.addEventListener("click", e => {
 });
 
 
-
-/*
-let card = document.createElement("div");
-card.classList.add('card');
-
-let body = document.createElement("div");
-body.classList.add('card-body');
-
-let img = document.createElement("img");
-img.classList.add('card-img-top');
-img.setAttribute('src', item.image);
-img.setAttribute('alt', item.title);
-
-let title = document.createElement("h5");
-title.classList.add('card-title');
-title.textContent = item.title;
-
-let desc = document.createElement("p");
-desc.classList.add('desc');
-desc.textContent = item.description;
-
-let button = document.createElement("a");
-button.classList.add('btn btn-primary'); 
-button.textContent = 'Add to Cart'
-button.onclick = () => {
-  cart.push(item);
-  shoppingCart();
-  }
-
-
-body.appendChild(title);
-body.appendChild(desc);
-body.appendChild(button);
-
-card.appendChild(img);
-card.appendChild(body);
-
-item.appendChild(card);
-
-console.log(item)
-})};*/

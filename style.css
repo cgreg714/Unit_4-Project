@@ -18,9 +18,11 @@ body {
     z-index: 1;
 }
 
-.display {
+#display {
     display: flex;
     flex-wrap: wrap; 
+    justify-content: space-around;
+    margin: 20px;
 }
 
 #footer {
@@ -33,23 +35,21 @@ body {
 
 .card {
     text-align: center;
-    height: 45vh;
-    margin: 15px;
-    width: 18rem;
+    margin: 15px; 
     justify-content: center;
     align-items: center;
-    border-radius: 20 em 20 em 0 0;
     box-shadow: 0 0 10px black;
     border: 0;
 }
-.card img {
-    border-radius: 10 em 10 em 0 0;
-}
+
+
+
 .card .btn {
     padding: .75em;
     border-radius: 0;
-}
+    }
 
 p {
     text-align: center;
 }
+
