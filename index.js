@@ -12,7 +12,6 @@ const cart = []; //empty array for cart
  const menNavLink = document.querySelector('#mensClothing');
  const display = document.getElementById("display");
  const item = document.querySelector(".item");
- 
 
 //! Cards
 
@@ -26,6 +25,12 @@ let body = document.createElement("div");
 let title = document.createElement("h5");
 let desc = document.createElement("p");
 let btn = document.createElement("a");
+let accordion = document.createElement('div');
+let accordionItem = document.createElement('div');
+let accordionHeader = document.createElement('h2');
+let accordionButton = document.createElement('button')
+let accordionBody = document.createElement('div');
+let accordionBodyContent = document.createElement('div');
 
 //* Set Attributes -- *building the single card div in our JS
 card.className = "card";
@@ -41,7 +46,7 @@ title.className = "card-title";
 title.textContent = item.title;
 
 desc.className = "card-text";
-desc.textContent = item.description;
+
 
 btn.className = "btn btn-primary";
 btn.textContent = "Add to Cart";
@@ -50,6 +55,38 @@ btn.onclick = () => {
   shoppingCart();
   }
 
+accordion.className = 'accordion';
+
+accordionItem.className = 'accordion-item';
+
+accordionHeader.className = 'accordion-header';
+accordionHeader.id = 'accordionHeader';
+
+
+accordionButton.className = 'accordion-button';
+accordionButton.type = 'button';
+accordionButton.setAttribute('data-bs-toggle', 'collapse');
+accordionButton.setAttribute('data-bs-target', '#collapseDesc');
+accordionButton.setAttribute('aria-expanded', 'true');
+accordionButton.setAttribute('aria-controls', 'collapseDesc');
+accordionButton.textContent= 'Description';
+
+accordionHeader.appendChild(accordionButton);
+
+accordionBody.id = 'collapseDesc';
+accordionBody.className = 'accordion-collapse collapse';
+accordionBody.setAttribute('aria-labelledby', 'accordionHeader');
+accordionBody.setAttribute('data-bs-parent', '.accordion');
+
+accordionBodyContent.className = 'accordion-body';
+accordionBodyContent.textContent = item.description
+
+accordionBody.appendChild(accordionBodyContent);
+
+accordionItem.appendChild(accordionHeader);
+accordionItem.appendChild(accordionBody);
+
+accordion.appendChild(accordionItem);
 
 //anonymous function that generates new object holding keys of: id, title, cost, quantity
 //each key is assigned the value of the current item, with quantity set to '1'
@@ -59,7 +96,9 @@ btn.onclick = () => {
 
 body.appendChild(title);
 body.appendChild(desc);
+body.appendChild(accordion);
 body.appendChild(btn);
+
 
 card.appendChild(img);
 card.appendChild(body);
@@ -83,13 +122,13 @@ let newRes = await res.json()
 displayItems(newRes) //newRes is holding the array from the fetch
 }
 
-window.addEventListener("load", (event) => {
-  event.preventDefault(displayItems);
+window.addEventListener("load", e => {
+  e.preventDefault(displayItems);
 });
 
  electronics.addEventListener("click", e => {
   e.preventDefault();
-  fakeStore('category/electronics')
+    fakeStore('category/electronics')
   });
 
 jewelry.addEventListener("click", e => {
