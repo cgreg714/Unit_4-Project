@@ -33,7 +33,7 @@ body {
     z-index: 1;
 }
 
-#card {
+.card {
     text-align: center;
     margin: 15px; 
     min-height: 200px;
@@ -43,11 +43,11 @@ body {
     border: 0;
 }
 
-
-
 .card .btn {
     padding: .75em;
     border-radius: 0;
+    align-items: center;
+    bottom: 0;
     }
 
 p {
