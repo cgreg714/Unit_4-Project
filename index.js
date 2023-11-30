@@ -12,9 +12,17 @@ const navLinks = document.querySelectorAll(".nav-link");
 const display = document.getElementById("display");
 const item = document.querySelector(".item");
 const activeCart = document.getElementById("shopping-cart");
-const cartItemQuantity = document.querySelector("#itemQuantity");
-const cartItemName = document.querySelector("#itemName");
-const cartItemPrice = document.querySelector("#itemPrice");
+var cartItemQuantity = document.querySelector("#itemQuantity");
+var cartItemName = document.querySelector("#itemName");
+var cartItemPrice = document.querySelector("#itemPrice");
+var cartSubtotal = document.querySelector("#subtotal");
+var cartTax = document.querySelector("#tax");
+var cartShipping = document.querySelector("#shipping");
+var finalTotal = document.querySelector("#total");
+var clearCart = document.querySelector(".btn-secondary");
+var purchase = document.querySelector("#buy");
+let subtotal = 0;
+
 //! Cards
 
 function displayItems(items) {
@@ -168,11 +176,13 @@ function displayItems(items) {
       if (newItem === undefined)
         {cart.push(item);} //if the new item does not have the same UPC as existing stock it is added as a new item
       else {newItem.itemQty += item.itemQty;
-           newItem.itemPrice += item.itemPrice} //if the newItem already exists, increase the quantity by 1
-      
-      //adding two items cost, but only one quantity on first addition to cart
-      
-      //console.log(cart);
+            newItem.itemPrice += item.itemPrice} //if the newItem already exists, increase the quantity by 1
+            
+            subtotal = cart.reduce((sum, cartItem) => sum + cartItem.itemPrice, 0);
+            let tax = subtotal * .0625;
+            let shipping = subtotal * .10;
+            let total = subtotal += tax += shipping;
+
       cart.forEach((item) => {
         
         //create elements
@@ -184,15 +194,21 @@ function displayItems(items) {
         //set attributes
         cartItemQuantity.textContent = `${itemQuantity}`;
         cartItemName.textContent = `${itemName}`;
-        cartItemPrice.textContent = `$ ${itemPrice.toFixed(2)}`;
-        console.log(itemQuantity);
-        console.log(itemName);
-        console.log(itemPrice);
+        cartItemPrice.textContent = `${itemPrice.toFixed(2)}`;
+        cartSubtotal.textContent = `${subtotal.toFixed(2)}`;
+        cartTax.textContent = `${tax.toFixed(2)}`;
+        cartShipping.textContent = `${shipping.toFixed(2)}`;
+        finalTotal.textContent = `${total.toFixed(2)}`;
+        buy.textContent = "Purchase for " + total.toFixed(2);
+        //console.log(itemQuantity);
+        //console.log(itemName);
+        //console.log(itemPrice);
         console.log(cart);
-        //attach elements
+        
 
       })
-    };
+
+  };  
 
 
 
@@ -244,3 +260,18 @@ mensClothing.addEventListener("click", (e) => {
   fakeStore(`category/men's%20clothing?sort=asc`);
   removeContent();
 });
+
+clearCart.addEventListener("click", (e) => {
+    cartItemQuantity = [];
+    cartItemName = [];
+    cartItemPrice = [];
+    cart = [];
+    console.log('Cart cleared!');
+  });
+
+  purchase.addEventListener("click", (e) => {
+    {
+      alert("Thank you for your purchase!");
+    }
+  })
+

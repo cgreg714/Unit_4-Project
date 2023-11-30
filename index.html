@@ -76,12 +76,15 @@
       <div class="modal-body">
         <table class="table">
           <thead>
+
             <tr>
+
               <th scope="col">Quantity</th>
               <th scope="col">Item</th>
               <th scope="col">Price</th>
               
             </tr>
+            
           </thead>
           <tbody>
             <tr>
@@ -91,26 +94,26 @@
             </tr>
             <tr>
               <td colspan="3" style="text-align: left; font-weight: bold;">Subtotal</td>
-              <td></td>
+              <td id="subtotal" style="text-align: right"></td>
             </tr>
             <tr>
               <td colspan="3" style="text-align: left; font-weight: bold;">Tax</td>
-              <td></td>
+              <td id="tax" style="text-align: right"></td>
             </tr>
             <tr>
               <td colspan="3" style="text-align: left; font-weight: bold;">Shipping</td>
-              <td></td>
+              <td id="shipping" style="text-align: right"></td>
             </tr>
             <tr>
               <td colspan="3" style="text-align: left; font-weight: bold; background-color: chartreuse;">Total</td>
-              <td></td>
+              <td id="total" style="text-align: right"></td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Clear Cart</button>
-        <button type="button" class="btn btn-primary">Purchase for </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="clear">Clear Cart</button>
+        <button type="button" class="btn btn-primary" id ="buy">Purchase for <span id="total"></span></button>
       </div>
     </div>
   </div>
