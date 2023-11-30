@@ -12,9 +12,9 @@ const navLinks = document.querySelectorAll(".nav-link");
 const display = document.getElementById("display");
 const item = document.querySelector(".item");
 const activeCart = document.getElementById("shopping-cart");
-const itemQuantity = document.querySelector("#itemQuantity");
-const itemName = document.querySelector("#itemName");
-const itemPrice = document.querySelector("itemPrice");
+const cartItemQuantity = document.querySelector("#itemQuantity");
+const cartItemName = document.querySelector("#itemName");
+const cartItemPrice = document.querySelector("#itemPrice");
 //! Cards
 
 function displayItems(items) {
@@ -162,8 +162,9 @@ function displayItems(items) {
         let itemPrice = item.itemPrice;
         //console.log()
         //set attributes
-        cartName.textContent = `${itemName}`;
-        
+        cartItemQuantity.textContent = `${itemQuantity}`;
+        cartItemName.textContent = `${itemName}`;
+        cartItemPrice.textContent = `$ ${itemPrice.toFixed(2)}`;
         console.log(itemQuantity);
         console.log(itemName);
         console.log(itemPrice);
