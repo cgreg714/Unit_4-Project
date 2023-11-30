@@ -145,35 +145,7 @@ function displayItems(items) {
       };
       submitToCart(obj);
     };
-
-    const submitToCart = (item) => {
-      let newItem = cart.find((obj) => obj.itemID === item.itemID); //compares the new items' UPC to the UPCs of existing items
-      if (newItem === undefined)
-        cart.push(
-          item
-        ); //if the new item does not have the same UPC as existing stock it is added as a new item
-      else newItem.itemQty += item.itemQty;
-      //console.log(cart);
-      cart.forEach((item) => {
-        //console.log(item)
-        //create elements
-        let itemQuantity = item.itemQty;
-        let itemName = item.itemTitle;
-        let itemPrice = item.itemPrice;
-        //console.log()
-        //set attributes
-        cartItemQuantity.textContent = `${itemQuantity}`;
-        cartItemName.textContent = `${itemName}`;
-        cartItemPrice.textContent = `$ ${itemPrice.toFixed(2)}`;
-        console.log(itemQuantity);
-        console.log(itemName);
-        console.log(itemPrice);
-        console.log(cart);
-        //attach elements
-
-      })
-    };
-
+    
     //* Attach Elements -- build from inside out
 
     body.appendChild(title);
@@ -191,6 +163,38 @@ function displayItems(items) {
 }
 
 //! Cart
+    const submitToCart = (item) => {
+      let newItem = cart.find((obj) => obj.itemID === item.itemID); //compares the new items' UPC to the UPCs of existing items
+      if (newItem === undefined)
+        {cart.push(item);} //if the new item does not have the same UPC as existing stock it is added as a new item
+      else {newItem.itemQty += item.itemQty;
+           newItem.itemPrice += item.itemPrice} //if the newItem already exists, increase the quantity by 1
+      
+      //adding two items cost, but only one quantity on first addition to cart
+      
+      //console.log(cart);
+      cart.forEach((item) => {
+        
+        //create elements
+        let itemQuantity = item.itemQty;
+        let itemName = item.itemTitle;
+        let itemPrice = item.itemPrice;
+        
+        
+        //set attributes
+        cartItemQuantity.textContent = `${itemQuantity}`;
+        cartItemName.textContent = `${itemName}`;
+        cartItemPrice.textContent = `$ ${itemPrice.toFixed(2)}`;
+        console.log(itemQuantity);
+        console.log(itemName);
+        console.log(itemPrice);
+        console.log(cart);
+        //attach elements
+
+      })
+    };
+
+
 
 //! Event Listeners
 const fakeStore = async (endpoint) => {
