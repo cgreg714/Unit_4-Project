@@ -1,13 +1,18 @@
 body {
     margin: 0;
     height: 100vh;
+    min-height: calc(100vh - 95px);
     padding-top: 6rem;
+    padding-bottom: 6rem;
     background-image: url('https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
+    grid-template-rows: 1fr auto;
     }
 
 .navbar {
@@ -33,15 +38,6 @@ body {
     z-index: 1;
 }
 
-.card {
-    text-align: center;
-    margin: 15px; 
-    min-height: 200px;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 10px black;
-    border: 0;
-}
 
 .card .btn {
     padding: .75em;
@@ -53,4 +49,7 @@ body {
 p {
     text-align: center;
 }
+
+
+
 

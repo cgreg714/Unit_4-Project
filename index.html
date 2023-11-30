@@ -24,7 +24,7 @@
     <!-- ! NAVBAR -->
        <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary"  data-bs-theme="dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">The Store</a>
+          <a class="navbar-brand" href="#" id="home">The Store</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -37,8 +37,10 @@
               <a class="nav-link" href="#" id="mensClothing">Men's Clothing</a>
             </div>
           </div>
-          <form class="d-flex" role="search">
-            <button class="btn btn-outline-success" type="submit">Cart</button>
+          <form class="d-flex" role="show cart">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Cart
+            </button>
           </form>
         </div>
       </nav>
@@ -62,13 +64,47 @@
       </div>  
 
       <!-- ! Cart -->
-  <div id = "cart">
+<div id = "shopping-cart">
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="Shopping Cart" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="title">Your Cart</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Quantity</th>
+              <th scope="col">Item</th>
+              <th scope="col">Price</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <td scope="row" id="itemQuantity"></td>
+            <td id="name" id="itemName"></td>
+            <td id="price" id="itemPrice"></td>
+            
+              
+           </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Clear Cart</button>
+        <button type="button" class="btn btn-primary">Purchase for </button>
+      </div>
+    </div>
+  </div>
+</div>
 
   </div>
       
     
   <!-- ! Footer -->
-  <footer class = "bg-dark mb-0 fixed-bottom">
+  <footer class = "bg-dark mb-10 fixed-bottom">
     <div class="container text-light text-center">
         <small class="text-white-50"><b>Unit 4 Project</b> ~ <a href="https://www.uprighted.com" target="_blank">Upright Education</a> Copyright © 2023 ~ <br>
             All work completed by <a href="https://www.linkedin.com/in/christopher-gregoire-3a466929a/" target = "_blank">Christopher Gregoire</a>, November 2023</small></p>
@@ -83,6 +119,7 @@
     >
     </script>
     <script src="./index.js" type="module"></script>
+ 
 </body>
 
 </html>
