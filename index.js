@@ -262,16 +262,16 @@ mensClothing.addEventListener("click", (e) => {
 });
 
 clearCart.addEventListener("click", (e) => {
-    cartItemQuantity = [];
-    cartItemName = [];
-    cartItemPrice = [];
-    cart = [];
+    cart.length = 0;
+    
     console.log('Cart cleared!');
+    console.log(cart);
   });
 
   purchase.addEventListener("click", (e) => {
     {
       alert("Thank you for your purchase!");
     }
+
   })
 
