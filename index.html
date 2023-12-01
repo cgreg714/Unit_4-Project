@@ -38,7 +38,7 @@
             </div>
           </div>
           <form class="d-flex" role="show cart">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="sCart">
               Cart
             </button>
           </form>
@@ -86,12 +86,14 @@
             </tr>
             
           </thead>
-          <tbody>
+          <tbody id ="tablebody">
+
             <tr>
               <td scope="row" id="itemQuantity"></td>
               <td id="itemName"></td>
               <td id="itemPrice"></td>
             </tr>
+
             <tr>
               <td colspan="3" style="text-align: left; font-weight: bold;">Subtotal</td>
               <td id="subtotal" style="text-align: right"></td>
