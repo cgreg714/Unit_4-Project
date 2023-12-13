@@ -202,61 +202,123 @@ function displayCart() {
   let subtotal = 0;
   let tax = 0;
   let shipping = 0;
-  let total = 0;
-
+  let total = 0
+  let tableBody = document.getElementById("tableBody");
+  while (tableBody.firstChild) {
+  tableBody.removeChild(tableBody.firstChild);
+  }
+  
   //console.log(cart)
   cart.forEach((item) => {
-    console.log("item;", item);
+    //console.log("item;", item);
     subtotal += item.itemPrice * item.itemQty;
-  });
+  
 
   //create elements
 
   let body = document.createElement("tbody");
   let row = document.createElement("tr");
-  let itemQuantity = document.createElement("td1");
-  let itemName = document.createElement("td2");
-  let itemPrice = document.createElement("td3");
+
+  let itemQuantity = document.createElement("td");
+  let itemName = document.createElement("td");
+  let itemPrice = document.createElement("td");
 
   //set attributes
   body.className = "tbody";
 
-  row.className = "row";
+  //row.className = "row";
 
-  itemQuantity.className = "td1";
+  itemQuantity.colSpan = "2"
+  itemQuantity.style = "text-align: left"
+  itemQuantity.className = "td";
   itemQuantity.textContent = item.itemQty;
 
-  itemName.className = "td2";
-  cartItemName.textContent = item.itemTitle;
+  itemName.style = "text-align: center"
+  itemName.className = "td";
+  itemName.textContent = item.itemTitle;
 
-  itemPrice.className = "td3";
+  itemPrice.style = "text-align: right"
+  itemPrice.className = "td";
   itemPrice.textContent = item.itemPrice;
 
-  cartSubtotal.textContent = `${subtotal.toFixed(2)}`;
-
-  cartTax.textContent = `${tax.toFixed(2)}`;
-
-  cartShipping.textContent = `${shipping.toFixed(2)}`;
-
-  finalTotal.textContent = `${total.toFixed(2)}`;
-
-  buy.textContent = "Purchase for " + total.toFixed(2);
-
   //Append items
+  
   row.appendChild(itemQuantity);
   row.appendChild(itemName);
   row.appendChild(itemPrice);
 
-  body.appendChild(row);
+  tableBody.appendChild(row);
+  });
 
   tax = subtotal * 0.0625;
   shipping = subtotal * 0.1;
   total = subtotal + tax + shipping;
 
-  cartSubtotal.textContent = `${subtotal.toFixed(2)}`;
-  cartTax.textContent = `${tax.toFixed(2)}`;
-  cartShipping.textContent = `${shipping.toFixed(2)}`;
-  finalTotal.textContent = `${total.toFixed(2)}`;
+  //create elements
+  
+  let stRow = document.createElement("tr")
+  let cartTax = document.createElement("tr")
+  let cartShip = document.createElement("tr")
+  let cartTotal = document.createElement("tr")
+
+  let sCartSubtotal = document.createElement("td")
+  let subtotalValue = document.createElement("td")
+
+  let sCartTax = document.createElement("td")
+  let cartTaxValue = document.createElement("td")
+
+  let sCartShipping = document.createElement("td")
+  let cartShippingValue = document.createElement("td")
+
+  let finalTotal = document.createElement("td")
+  let totalValue = document.createElement("td")
+
+  //set attributes
+  sCartSubtotal.colSpan = "3"
+  sCartSubtotal.style = "text-align: left; font-weight: bold;"
+  sCartSubtotal.textContent = `SUBTOTAL`
+
+  subtotalValue.style = "text-align: right; font-weight: bold;"
+  subtotalValue.textContent = `${subtotal.toFixed(2)}`
+  
+  sCartTax.colSpan = "3"
+  sCartTax.style = "text-align: left; font-weight: bold;"
+  sCartTax.textContent = `TAX`
+
+  cartTaxValue.style = "text-align: left; font-weight: bold;"
+  cartTaxValue.textContent = `${tax.toFixed(2)}`
+
+  sCartShipping.colSpan = "3"
+  sCartShipping.style = "text-align: left; font-weight: bold;"
+  sCartShipping.textContent = `SHIPPING`
+
+  cartShippingValue.style = "text-align: left; font-weight: bold;"
+  cartShippingValue.textContent = `${shipping.toFixed(2)}`
+  
+  finalTotal.colSpan = "3"
+  finalTotal.style = "text-align: left; font-weight: bold;"
+  finalTotal.textContent = `TOTAL`
+
+  totalValue.style = "text-align: left; font-weight: bold;"
+  totalValue.textContent = `${total.toFixed(2)}`
+  //append items
+  stRow.appendChild(sCartSubtotal)
+  stRow.appendChild(subtotalValue)
+  
+  cartTax.appendChild(sCartTax)
+  cartTax.appendChild(cartTaxValue)
+  
+  cartShip.appendChild(sCartShipping)
+  cartShip.appendChild(cartShippingValue)
+
+  cartTotal.appendChild(finalTotal)
+  cartTotal.appendChild(totalValue)
+
+  tableBody.appendChild(stRow)
+  tableBody.appendChild(cartTax)
+  tableBody.appendChild(cartShip)
+  tableBody.appendChild(cartTotal)
+  
   buy.textContent = "Purchase for " + total.toFixed(2);
 }
 
