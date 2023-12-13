@@ -54,3 +54,12 @@ let subtotal = 0
       cartShipping.textContent = `${shipping.toFixed(2)}`;
       finalTotal.textContent = `${total.toFixed(2)}`;
       buy.textContent = "Purchase for " + total.toFixed(2);
+
+      //from ln 57 of html
+      <!--<div class="card" style="width: 18rem;">
+      <img src="" class="card-img-top" alt="item images">
+      <div class="card-body">
+        <h5 class="card-title">Item Name</h5>
+        <p class="card-text">Item Description</p>
+        <a href="#" class="btn btn-outline-primary btn-med mt-3">Add to Cart</a>
+      </div>-->

@@ -12,18 +12,18 @@ const navLinks = document.querySelectorAll(".nav-link");
 const display = document.getElementById("display");
 const item = document.querySelector(".item");
 const activeCart = document.getElementById("shopping-cart");
-let cartItemQuantity = document.querySelector("#itemQuantity");
-let cartItemName = document.querySelector("#itemName");
-let cartItemPrice = document.querySelector("#itemPrice");
-let cartSubtotal = document.querySelector("#subtotal");
-let cartTax = document.querySelector("#tax");
-let cartShipping = document.querySelector("#shipping");
-let finalTotal = document.querySelector("#total");
-let clearCart = document.querySelector(".btn-secondary");
-let purchase = document.querySelector("#buy");
-let subtotal = 0;
-let tableBody = document.getElementById("tableBody");
-const sCart = document.getElementById("sCart")
+const cartItemQuantity = document.querySelector("#itemQuantity");
+const cartItemName = document.querySelector("#itemName");
+const cartItemPrice = document.querySelector("#itemPrice");
+const cartSubtotal = document.querySelector("#subtotal");
+const cartTax = document.querySelector("#tax");
+const cartShipping = document.querySelector("#shipping");
+const finalTotal = document.querySelector("#total");
+const clearCart = document.querySelector(".btn-secondary");
+const purchase = document.querySelector("#buy");
+const subtotal = 0;
+const tableBody = document.getElementById("tableBody");
+const sCart = document.getElementById("sCart");
 //! Cards
 
 function displayCards(items) {
@@ -154,7 +154,7 @@ function displayCards(items) {
       };
       submitToCart(obj);
     };
-    
+
     //* Attach Elements -- build from inside out
 
     body.appendChild(title);
@@ -172,15 +172,16 @@ function displayCards(items) {
 }
 
 //! Cart
-    const submitToCart = (item) => {
-      let newItem = cart.find((obj) => obj.itemID === item.itemID); //compares the new items' UPC to the UPCs of existing items
-      if (newItem === undefined)
-        {cart.push(item);} //if the new item does not have the same UPC as existing stock it is added as a new item
-      else {newItem.itemQty += item.itemQty;
-           //newItem.itemPrice += item.itemPrice //if the newItem already exists, increase the quantity by 1
-    }};  
-
-
+const submitToCart = (item) => {
+  let newItem = cart.find((obj) => obj.itemID === item.itemID); //compares the new items' UPC to the UPCs of existing items
+  if (newItem === undefined) {
+    cart.push(item);
+  } //if the new item does not have the same UPC as existing stock it is added as a new item
+  else {
+    newItem.itemQty += item.itemQty;
+    //newItem.itemPrice += item.itemPrice //if the newItem already exists, increase the quantity by 1
+  }
+};
 
 //! Event Listeners
 const fakeStore = async (endpoint) => {
@@ -197,65 +198,59 @@ function removeContent() {
   }
 }
 
-function displayCart () {
-  let subtotal = 0 
-  let tax = 0
-  let shipping = 0
-  let total = 0
-  
-  //console.log(cart)      
+function displayCart() {
+  let subtotal = 0;
+  let tax = 0;
+  let shipping = 0;
+  let total = 0;
+
+  //console.log(cart)
   cart.forEach((item) => {
-    console.log( "item;", item);
+    console.log("item;", item);
     subtotal += item.itemPrice * item.itemQty;
-  })
-    
-      
-    //create elements
-    cart.map()
-    let body = document.createElement('tbody');
-    let row = document.createElement('tr');
-    let itemQuantity = document.createElement('td1');
-    let itemName = document.createElement('td2');
-    let itemPrice = document.createElement('td3');
-    
-    
-    
-    //set attributes
-    body.className = "tbody"
+  });
 
-    row.className = "row";
+  //create elements
 
-    itemQuantity.className = "td1";
-    itemQuantity.textContent = item.itemQty;
+  let body = document.createElement("tbody");
+  let row = document.createElement("tr");
+  let itemQuantity = document.createElement("td1");
+  let itemName = document.createElement("td2");
+  let itemPrice = document.createElement("td3");
 
-    itemName.className = "td2";
-    cartItemName.textContent = item.itemTitle;
+  //set attributes
+  body.className = "tbody";
 
-    itemPrice.className = "td3";
-    itemPrice.textContent = item.itemPrice;
+  row.className = "row";
 
-    cartSubtotal.textContent = `${subtotal.toFixed(2)}`;
-    
-    cartTax.textContent = `${tax.toFixed(2)}`;
-    
-    cartShipping.textContent = `${shipping.toFixed(2)}`;
-    
-    finalTotal.textContent = `${total.toFixed(2)}`;
-    
-    buy.textContent = "Purchase for " + total.toFixed(2);
-    
-    //Append items
-    row.appendChild(itemQuantity);
-    row.appendChild(itemName);
-    row.appendChild(itemPrice);
+  itemQuantity.className = "td1";
+  itemQuantity.textContent = item.itemQty;
 
-    body.appendChild(row);
+  itemName.className = "td2";
+  cartItemName.textContent = item.itemTitle;
 
+  itemPrice.className = "td3";
+  itemPrice.textContent = item.itemPrice;
 
-  })
+  cartSubtotal.textContent = `${subtotal.toFixed(2)}`;
 
-  tax = subtotal * .0625;
-  shipping = subtotal * 0.10;
+  cartTax.textContent = `${tax.toFixed(2)}`;
+
+  cartShipping.textContent = `${shipping.toFixed(2)}`;
+
+  finalTotal.textContent = `${total.toFixed(2)}`;
+
+  buy.textContent = "Purchase for " + total.toFixed(2);
+
+  //Append items
+  row.appendChild(itemQuantity);
+  row.appendChild(itemName);
+  row.appendChild(itemPrice);
+
+  body.appendChild(row);
+
+  tax = subtotal * 0.0625;
+  shipping = subtotal * 0.1;
   total = subtotal + tax + shipping;
 
   cartSubtotal.textContent = `${subtotal.toFixed(2)}`;
@@ -300,6 +295,22 @@ mensClothing.addEventListener("click", (e) => {
 });
 
 clearCart.addEventListener("click", (e) => {
+  cart.length = 0;
+  itemQuantity.innerHTML = "";
+  itemName.innerHTML = "";
+  itemPrice.innerHTML = "";
+  cartSubtotal.innerHTML = "0.00";
+  cartTax.innerHTML = "0.00";
+  cartShipping.innerHTML = "0.00";
+  finalTotal.innerHTML = "0.00";
+  buy.innerHTML = " Purchase for ";
+  console.log("Cart cleared!");
+  console.log(cart);
+});
+
+purchase.addEventListener("click", (e) => {
+  {
+    alert("Thank you for your purchase!");
     cart.length = 0;
     itemQuantity.innerHTML = "";
     itemName.innerHTML = "";
@@ -309,28 +320,9 @@ clearCart.addEventListener("click", (e) => {
     cartShipping.innerHTML = "0.00";
     finalTotal.innerHTML = "0.00";
     buy.innerHTML = " Purchase for ";
-    console.log('Cart cleared!');
-    console.log(cart);
-  });
+  }
+});
 
-  purchase.addEventListener("click", (e) => {
-    {
-      alert("Thank you for your purchase!");
-      cart.length = 0;
-    itemQuantity.innerHTML = "";
-    itemName.innerHTML = "";
-    itemPrice.innerHTML = "";
-    cartSubtotal.innerHTML = "0.00";
-    cartTax.innerHTML = "0.00";
-    cartShipping.innerHTML = "0.00";
-    finalTotal.innerHTML = "0.00";
-    buy.innerHTML = " Purchase for ";
-    }
-  })
-
- sCart.addEventListener("click", (e) =>  {
-  displayCart()
- })
-
-
-
+sCart.addEventListener("click", (e) => {
+  displayCart();
+});
