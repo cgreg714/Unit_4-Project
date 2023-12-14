@@ -74,7 +74,7 @@ function displayCards(items) {
 
     price.className = "price";
 
-    accordion.className = "accordion"; // Creates the collapsible description div
+    accordion.className = "accordion"; // Creates the collapsible price div
 
     accordionItem.className = "accordion-item";
 
@@ -88,6 +88,7 @@ function displayCards(items) {
       "data-bs-target",
       `#collapseDesc${item.price}`
     ); //target id value of item string/array
+
     accordionButton.setAttribute("aria-expanded", "false");
     accordionButton.setAttribute("aria-controls", "collapseDesc");
     accordionButton.textContent = "Price";
@@ -143,6 +144,7 @@ function displayCards(items) {
 
     accordion2.appendChild(accordionItem2);
 
+    //add to cart button functionality
     cartBtn.className = "btn btn-primary";
     cartBtn.textContent = "Add to Cart";
     cartBtn.onclick = () => {
@@ -179,7 +181,7 @@ const submitToCart = (item) => {
   } //if the new item does not have the same UPC as existing stock it is added as a new item
   else {
     newItem.itemQty += item.itemQty;
-    //newItem.itemPrice += item.itemPrice //if the newItem already exists, increase the quantity by 1
+   //if the newItem already exists, increase the quantity by 1
   }
 };
 
@@ -208,10 +210,9 @@ function displayCart() {
   tableBody.removeChild(tableBody.firstChild);
   }
   
-  //console.log(cart)
+  
   cart.forEach((item) => {
-    //console.log("item;", item);
-    subtotal += item.itemPrice * item.itemQty;
+  subtotal += item.itemPrice * item.itemQty;
   
 
   //create elements
@@ -226,7 +227,7 @@ function displayCart() {
   //set attributes
   body.className = "tbody";
 
-  //row.className = "row";
+ 
 
   itemQuantity.colSpan = "2"
   itemQuantity.style = "text-align: left"
@@ -239,7 +240,7 @@ function displayCart() {
 
   itemPrice.style = "text-align: right"
   itemPrice.className = "td";
-  itemPrice.textContent = item.itemPrice;
+  itemPrice.textContent = item.itemPrice.toFixed(2);
 
   //Append items
   
@@ -250,12 +251,12 @@ function displayCart() {
   tableBody.appendChild(row);
   });
 
+  //mathematical functions for shopping cart
   tax = subtotal * 0.0625;
   shipping = subtotal * 0.1;
   total = subtotal + tax + shipping;
 
-  //create elements
-  
+  //create elements for bottom of cart
   let stRow = document.createElement("tr")
   let cartTax = document.createElement("tr")
   let cartShip = document.createElement("tr")
@@ -273,7 +274,7 @@ function displayCart() {
   let finalTotal = document.createElement("td")
   let totalValue = document.createElement("td")
 
-  //set attributes
+  //set attributes for bottom of cart
   sCartSubtotal.colSpan = "3"
   sCartSubtotal.style = "text-align: left; font-weight: bold;"
   sCartSubtotal.textContent = `SUBTOTAL`
@@ -301,7 +302,8 @@ function displayCart() {
 
   totalValue.style = "text-align: left; font-weight: bold;"
   totalValue.textContent = `${total.toFixed(2)}`
-  //append items
+
+  //append items for bottom of cart
   stRow.appendChild(sCartSubtotal)
   stRow.appendChild(subtotalValue)
   
@@ -322,16 +324,20 @@ function displayCart() {
   buy.textContent = "Purchase for " + total.toFixed(2);
 }
 
+//event listeners
+//displays all items in store upon page load
 window.addEventListener("load", (e) => {
   e.preventDefault(displayCards);
   fakeStore("");
 });
 
+//displays all items in store upon return to home page
 home.addEventListener("click", (e) => {
   fakeStore("");
   removeContent();
 });
 
+//functionality of item category buttons in navbar
 electronics.addEventListener("click", (e) => {
   e.preventDefault();
   fakeStore("category/electronics");
@@ -356,6 +362,7 @@ mensClothing.addEventListener("click", (e) => {
   removeContent();
 });
 
+//removes all items from cart and clears existing numerical values
 clearCart.addEventListener("click", (e) => {
   cart.length = 0;
   itemQuantity.innerHTML = "";
@@ -370,6 +377,7 @@ clearCart.addEventListener("click", (e) => {
   console.log(cart);
 });
 
+//completes purchase, displays thank you message, clears content of cart
 purchase.addEventListener("click", (e) => {
   {
     alert("Thank you for your purchase!");
@@ -385,6 +393,7 @@ purchase.addEventListener("click", (e) => {
   }
 });
 
+//shows content of current cart
 sCart.addEventListener("click", (e) => {
   displayCart();
 });
